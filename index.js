@@ -8,7 +8,7 @@ class LaravelMixFilenameVersioning {
 
       Object.keys(stats.compilation.assets).forEach(assetName => {
         let originalAssetNameParts = path.parse(assetName);
-        let newAssetFile = new File(path.join(Config.publicPath, assetName));
+        let newAssetFile = new File(path.join(Config.publicPath, assetName).replace(/\\/g, '/'));
         let newAssetFileName = newAssetFile.segments.name + '.' + newAssetFile.version().substr(0, 8) + newAssetFile.segments.ext;
 
         newAssetFile.rename(newAssetFileName);
